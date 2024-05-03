@@ -6,15 +6,11 @@ Router.post("/todo", async (req, res) => {
   try {
     const createPayload = req.body;
     const list = todoInputSchema.safeParse(createPayload);
-    console.log(list);
+    // console.log(list);
     if (!list.success) {
       return res.status(411).json({ msg: "You sent the wrong inputs." });
     }
-    // const markAsCompleted = todoInputSchema.safeParse(req.body.markAsCompleted);
-    // const addTodo = new todoModel({
-    //   title: list.data.title,
-    //   description: list.data.description,
-    // });
+
     const addTodo = await new todoModel({
       title: list.data.title,
       description: list.data.description,
@@ -45,16 +41,18 @@ Router.get("/todos", async (req, res) => {
 });
 
 Router.put("/completed", async (req, res) => {
-  const updatePayload = req.body;
-  const parsedList = updateTodoSchema.safeParse(updatePayload);
-  if (!parsedList.success) {
-    return res.status(411).json({ msg: "You sent the wrong inputs." });
+  const id = req.body.id;
+  //   console.log(id);
+  const parsedId = updateTodoSchema.safeParse(id);
+  //   console.log(parsedId);
+  if (!parsedId.success) {
+    return res.status(411).json({ msg: "You sent the wrong id." });
   }
-  await todo.update(
+  await todoModel.updateOne(
     {
-      _id: req.body.id,
+      _id: parsedId.data,
     },
-    { completed: true }
+    { $set: { completed: true } }
   );
   res.json({ msg: "Todo marked as completed." });
 });
