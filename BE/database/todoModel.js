@@ -7,8 +7,10 @@ const todoSchema = new Schema({
   },
 
   description: String,
-  //   markAsCompleted: {
-  //     type: Boolean,
+  completed: {
+    type: Boolean,
+    default: false,
+  },
   //     required: true,
   //   },
 });

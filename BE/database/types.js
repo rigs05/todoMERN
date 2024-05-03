@@ -8,8 +8,8 @@ const todoInputSchema = zod.object({
 });
 
 // Schema for mark-as-done todo
-const verifyTodoSchema = zod.object({
+const updateTodoSchema = zod.object({
   id: zod.string(),
 });
 
-module.exports = { todoInputSchema, verifyTodoSchema };
+module.exports = { todoInputSchema, updateTodoSchema };
