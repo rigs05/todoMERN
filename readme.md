@@ -11,4 +11,4 @@ It has the following functionality:
 
 // Clone the git repository
 // Initialize a node project
-//
+// Initialize a vite project

@@ -57,5 +57,4 @@ Router.put("/completed", async (req, res) => {
   res.json({ msg: "Todo marked as completed." });
 });
 
-// module.exports = Router;
 module.exports = Router;
