@@ -41,16 +41,16 @@ Router.get("/todos", async (req, res) => {
 });
 
 Router.put("/completed", async (req, res) => {
-  const id = req.body.id;
-  //   console.log(id);
-  const parsedId = updateTodoSchema.safeParse(id);
-  //   console.log(parsedId);
+  const { id } = req.body;
+  // console.log(id);
+  const parsedId = updateTodoSchema.safeParse({ id: id });
+  console.log(parsedId);
   if (!parsedId.success) {
     return res.status(411).json({ msg: "You sent the wrong id." });
   }
   await todoModel.updateOne(
     {
-      _id: parsedId.data,
+      _id: parsedId.data.id,
     },
     { $set: { completed: true } }
   );
