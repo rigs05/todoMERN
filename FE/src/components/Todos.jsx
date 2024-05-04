@@ -1,10 +1,18 @@
-const Todos = () => {
+const Todos = ({ todos }) => {
   return (
-    <>
-      <h3>Todo Title</h3>
-      <h5>Todo Description</h5>
-      <button>Mark as Completed</button>
-    </>
+    <div>
+      {todos.map((todo) => {
+        return (
+          <div>
+            <h3>{todo.title}</h3>
+            <h5>{todo.description}</h5>
+            <button>
+              {todo.completed == true ? "Completed!" : "Mark as Complete"}
+            </button>
+          </div>
+        );
+      })}
+    </div>
   );
 };
 

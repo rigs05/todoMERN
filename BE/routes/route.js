@@ -10,7 +10,7 @@ Router.post("/todo", async (req, res) => {
     if (!list.success) {
       return res.status(411).json({ msg: "You sent the wrong inputs." });
     }
-
+    console.log(list);
     const addTodo = await new todoModel({
       title: list.data.title,
       description: list.data.description,
