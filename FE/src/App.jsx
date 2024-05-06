@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import AddTodo from "./components/AddTodo";
 import Todos from "./components/Todos";
 // import reactLogo from './assets/react.svg'
@@ -17,12 +17,14 @@ function App() {
   //     setTodos(json.todos);
   //   });
   // };
-  fetch("http://localhost:5001/todos")
-    .then(async (res) => await res.json())
-    .then((data) => {
-      console.log("The data is: " + data);
-      // setTodos(data);
-    });
+  useEffect(() => {
+    fetch("http://localhost:5001/todos")
+      .then(async (res) => await res.json())
+      .then((data) => {
+        console.log("The data is: " + data);
+        setTodos(data);
+      });
+  }, []);
 
   // fetchFunction();
 

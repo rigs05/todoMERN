@@ -72,5 +72,8 @@ const AddTodo = () => {
       </button>
     </div>
   );
+
+  //   pass the setTodos function here using props.setTodos and append the current value
+  //   to the ...todos list to render the latest additions on the screen.
 };
 export default AddTodo;
